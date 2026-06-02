@@ -1,8 +1,9 @@
+from typing import Generator
 from os import getenv
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 
 load_dotenv()
 
@@ -16,7 +17,7 @@ engine = create_engine(DB_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-def get_conn():
+def get_db() -> Generator[Session, None, None]:
     sess = SessionLocal()
     try:
         yield sess
