@@ -1,0 +1,137 @@
+My Pick: Job Portal API
+
+This aligns with your career goals and teaches nearly everything employers expect.
+
+Entities
+Users
+user_id
+username
+email
+password_hash
+role
+
+Roles:
+
+candidate
+employer
+admin
+Companies
+company_id
+name
+description
+owner_id
+Jobs
+job_id
+title
+description
+salary
+company_id
+created_at
+Applications
+application_id
+job_id
+user_id
+resume_url
+status
+
+Status:
+
+pending
+reviewed
+rejected
+accepted
+Why This System?
+
+It naturally forces you to learn:
+
+FastAPI Core
+APIRouter
+Pydantic
+Dependency Injection
+Validation
+Database
+PostgreSQL
+SQLAlchemy 2.0
+Relationships
+Alembic
+Authentication
+JWT
+Password Hashing
+Role-based Access
+File Uploads
+Resume Upload
+Authorization
+Employer can create jobs
+
+Candidate can apply
+
+Admin can manage everything
+Learning Phases
+Phase 1
+Users CRUD
+Companies CRUD
+Jobs CRUD
+Applications CRUD
+Phase 2
+SQLAlchemy Relationships
+
+Examples:
+
+User → Applications
+
+Company → Jobs
+
+Job → Applications
+Phase 3
+JWT Authentication
+
+Endpoints:
+
+/register
+/login
+/me
+Phase 4
+Role-Based Permissions
+
+Example:
+
+Candidate
+❌ Create Job
+
+Employer
+✅ Create Job
+Phase 5
+Resume Upload
+
+Use:
+
+UploadFile
+File
+Phase 6
+Pagination
+Search
+Filtering
+
+Example:
+
+/jobs?title=python
+/jobs?salary_gt=100000
+
+This single project teaches:
+
+FastAPI
+SQLAlchemy
+Alembic
+PostgreSQL
+JWT
+Authorization
+File Uploads
+Project Structure
+
+which is a huge portion of what junior-to-mid backend job postings ask for.
+
+So if we're starting fresh, I'd choose:
+
+Job Portal API
+
+over another CRUD app, because it naturally introduces the advanced FastAPI concepts you haven't fully mastered yet.

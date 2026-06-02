@@ -1,5 +1,9 @@
+from db import engine
+from models import Base
+
+
 def main():
-    print("Hello from job-portal-api!")
+    Base.metadata.create_all(engine)
 
 
 if __name__ == "__main__":
