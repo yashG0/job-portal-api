@@ -1,11 +1,9 @@
 from typing import Generator
 from os import getenv
 
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
-load_dotenv()
 
 DB_URL: str | None = getenv("DB_URL")
 if DB_URL is None:

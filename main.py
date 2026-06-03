@@ -1,7 +1,9 @@
-from fastapi import Depends, FastAPI
-from sqlalchemy.orm import Session
+from dotenv import load_dotenv
+from fastapi import FastAPI
 
-from api.user_api import user_routes
+from routes.user_routes import user_routes
+
+load_dotenv()
 
 app = FastAPI()
 
