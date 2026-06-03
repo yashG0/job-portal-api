@@ -1,10 +1,14 @@
-from db import engine
-from models import Base
+from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
+
+from api.user_api import user_routes
+
+app = FastAPI()
 
 
-def main():
-    Base.metadata.create_all(engine)
+@app.get("/")
+async def health():
+    return {"status": "Running perfectly..."}
 
 
-if __name__ == "__main__":
-    main()
+app.include_router(user_routes)
