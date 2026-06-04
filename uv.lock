@@ -415,6 +415,7 @@ dependencies = [
     { name = "argon2-cffi" },
     { name = "fastapi", extra = ["all"] },
     { name = "psycopg" },
+    { name = "pydantic", extra = ["email"] },
     { name = "pyjwt" },
     { name = "sqlalchemy" },
 ]
@@ -424,6 +425,7 @@ requires-dist = [
     { name = "argon2-cffi", specifier = ">=25.1.0" },
     { name = "fastapi", extras = ["all"], specifier = ">=0.136.3" },
     { name = "psycopg", specifier = ">=3.3.4" },
+    { name = "pydantic", extras = ["email"] },
     { name = "pyjwt", specifier = ">=2.13.0" },
     { name = "sqlalchemy", specifier = ">=2.0.50" },
 ]

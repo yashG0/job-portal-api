@@ -3,14 +3,14 @@ from os import getenv
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt import InvalidTokenError
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from db import get_db
 from models import User
-from schema import TokenResponse, UserLogin, UserSchemaOut
+from schema import TokenResponse
 from utils import create_access_token, decode_access_token, verify_password
 
 auth_routes = APIRouter()
@@ -22,16 +22,16 @@ if JWT_KEY is None:
     raise ValueError("Jwt secret not loaded!")
 
 
-@auth_routes.post("/login")
+@auth_routes.post("/login", response_model=TokenResponse)
 async def verify_user(
-    user_info: UserLogin, sess: Session = Depends(get_db)
+    user_info: OAuth2PasswordRequestForm = Depends(), sess: Session = Depends(get_db)
 ) -> TokenResponse:
-    user_exists = sess.scalar(select(User).where(User.email == user_info.email))
+    user_exists = sess.scalar(select(User).where(User.email == user_info.username))
 
     if user_exists is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User Doesn't Exists! Please sign up",
+            detail="Invalid credentials",
         )
     if not verify_password(user_info.password, user_exists.password_hash):
         raise HTTPException(

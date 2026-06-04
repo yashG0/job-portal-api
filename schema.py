@@ -1,8 +1,7 @@
+from sqlalchemy.testing.pickleable import EmailUser
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
-from sqlalchemy.testing.pickleable import EmailUser
-
 from models import UserRole
 
 
@@ -24,13 +23,13 @@ class UserSchemaOut(UserSchemaBase):
     updated_at: datetime
 
 
-class PasswordUpdate(UserSchemaBase):
+class PasswordUpdate(BaseModel):
     old_password: str = Field(min_length=6, max_length=255)
     new_password: str = Field(min_length=6, max_length=255)
 
 
 class UserLogin(BaseModel):
-    email: EmailUser
+    email: str
     password: str
 
 
