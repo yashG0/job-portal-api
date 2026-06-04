@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from db import get_db
 from models import Company, User, UserRole
 from routes.auth_routes import get_current_user
-from schema import CompanySchemaIn, CompanySchemaOut
+from schema import CompanyEditSchema, CompanySchemaIn, CompanySchemaOut
 
 company_routes = APIRouter()
 
@@ -81,3 +81,60 @@ async def get_company(
         )
 
     return company
+
+
+@company_routes.put(
+    "/companies/{company_id}",
+    status_code=status.HTTP_200_OK,
+    response_model=CompanySchemaOut,
+)
+async def edit_company(
+    company_id: int,
+    updated_company_details: CompanyEditSchema,
+    sess: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    company_exists = sess.scalar(
+        select(Company)
+        .where(Company.owner_id == current_user.user_id)
+        .where(Company.company_id == company_id)
+    )
+    if company_exists is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Company not found"
+        )
+    try:
+        company_exists.name = updated_company_details.name
+        company_exists.description = updated_company_details.description
+        sess.commit()
+        sess.refresh(company_exists)
+        return company_exists
+    except Exception:
+        sess.rollback()
+        raise
+
+
+@company_routes.delete(
+    "/companies/{company_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def remove_company(
+    company_id: int,
+    sess: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    company_exists = sess.scalar(
+        select(Company)
+        .where(Company.owner_id == current_user.user_id)
+        .where(Company.company_id == company_id)
+    )
+    if company_exists is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Company not found"
+        )
+    try:
+        sess.delete(company_exists)
+        sess.commit()
+    except Exception:
+        sess.rollback()
+        raise
