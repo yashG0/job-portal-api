@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
-from models import JobStatus, JobType, UserRole, WorkEnvironment
+from models import JobApplicationStatus, JobStatus, JobType, UserRole, WorkEnvironment
 
 
 class UserSchemaBase(BaseModel):
@@ -94,3 +94,21 @@ class JobUpdateSchema(JobSchemaBase):
     job_status: JobStatus
     job_type: JobType
     work_environment: WorkEnvironment
+
+
+class ApplicationBaseSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ApplicationSchemaIn(ApplicationBaseSchema):
+    resume_url: str = Field(max_length=500, min_length=3)
+
+
+class ApplicationSchemaOut(ApplicationBaseSchema):
+    application_id: int
+    job_id: int
+    user_id: int
+    resume_url: str
+    status: JobApplicationStatus
+    created_at: datetime
+    updated_at: datetime
