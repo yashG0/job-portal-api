@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
-from models import UserRole
+from models import JobStatus, JobType, UserRole, WorkEnvironment
 
 
 class UserSchemaBase(BaseModel):
@@ -56,4 +56,41 @@ class CompanySchemaOut(CompanySchemaIn):
 
 class CompanyEditSchema(CompanySchemaBase):
     name: str = Field(max_length=50, min_length=3)
-    description: str 
+    description: str
+
+
+class JobSchemaBase(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+
+class JobSchemaIn(JobSchemaBase):
+    title: str = Field(min_length=3, max_length=100)
+    description: str
+    salary_min: int = Field(gt=10000)
+    salary_max: int
+    job_status: JobStatus = Field(default=JobStatus.opened)
+    job_type: JobType = Field(default=JobType.full_time)
+    work_environment: WorkEnvironment = Field(default=WorkEnvironment.on_site)
+
+
+class JobSchemaOut(JobSchemaBase):
+    job_id: int
+    title: str
+    description: str
+    salary_min: int
+    salary_max: int
+    job_status: JobStatus
+    job_type: JobType
+    work_environment: WorkEnvironment
+    created_at: datetime
+    updated_at: datetime
+
+
+class JobUpdateSchema(JobSchemaBase):
+    title: str = Field(min_length=3, max_length=100)
+    description: str
+    salary_min: int = Field(gt=10000)
+    salary_max: int
+    job_status: JobStatus
+    job_type: JobType
+    work_environment: WorkEnvironment
