@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:17
+    container_name: job_portal_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: job_portal
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yash
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: job_portal_api
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:

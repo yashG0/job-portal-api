@@ -113,19 +113,18 @@ def seed_companies():
     companies = [
         Company(
             name="TechNova",
-            description="Backend APIs, FastAPI, Django, PostgreSQL and Cloud Solutions",
-            owner_id=5,
+            owner_id=2,
         ),
+        
         Company(
             name="StartupX",
-            description="Artificial Intelligence, LLMs, NLP and Machine Learning Products",
-            owner_id=6,
+            owner_id=3,
         ),
+        
         Company(
             name="CloudForge",
-            description="DevOps, Kubernetes, Docker and AWS Consulting",
-            owner_id=7,
-        ),
+            owner_id=4,
+        )
     ]
     with SessionLocal() as sess:
         sess.add_all(companies)
@@ -269,184 +268,160 @@ def seed_jobs():
 def seed_applications():
     with SessionLocal() as sess:
         applications = [
-            # Python Developer
+            # Job 1
             Application(
-                job_id=25,
-                user_id=8,
+                job_id=1,
+                user_id=5,
                 resume_url="john_resume.pdf",
                 status=JobApplicationStatus.submitted,
             ),
             Application(
-                job_id=25,
-                user_id=9,
+                job_id=1,
+                user_id=6,
                 resume_url="alice_resume.pdf",
                 status=JobApplicationStatus.reviewing,
             ),
+            # Job 2
             Application(
-                job_id=25,
-                user_id=10,
+                job_id=2,
+                user_id=7,
                 resume_url="bob_resume.pdf",
                 status=JobApplicationStatus.shortlisted,
             ),
-            # FastAPI Backend Engineer
             Application(
-                job_id=26,
-                user_id=15,
-                resume_url="olivia_resume.pdf",
+                job_id=2,
+                user_id=8,
+                resume_url="emma_resume.pdf",
+                status=JobApplicationStatus.submitted,
+            ),
+            # Job 3
+            Application(
+                job_id=3,
+                user_id=9,
+                resume_url="michael_resume.pdf",
+                status=JobApplicationStatus.reviewing,
+            ),
+            Application(
+                job_id=3,
+                user_id=10,
+                resume_url="sophia_resume.pdf",
+                status=JobApplicationStatus.shortlisted,
+            ),
+            # Job 4
+            Application(
+                job_id=4,
+                user_id=11,
+                resume_url="liam_resume.pdf",
                 status=JobApplicationStatus.submitted,
             ),
             Application(
-                job_id=26,
+                job_id=4,
+                user_id=12,
+                resume_url="olivia_resume.pdf",
+                status=JobApplicationStatus.reviewing,
+            ),
+            # Job 5
+            Application(
+                job_id=5,
+                user_id=13,
+                resume_url="noah_resume.pdf",
+                status=JobApplicationStatus.shortlisted,
+            ),
+            Application(
+                job_id=5,
                 user_id=14,
+                resume_url="ava_resume.pdf",
+                status=JobApplicationStatus.submitted,
+            ),
+            # Job 6
+            Application(
+                job_id=6,
+                user_id=5,
+                resume_url="john_resume.pdf",
+                status=JobApplicationStatus.reviewing,
+            ),
+            Application(
+                job_id=6,
+                user_id=6,
+                resume_url="alice_resume.pdf",
+                status=JobApplicationStatus.shortlisted,
+            ),
+            # Job 7
+            Application(
+                job_id=7,
+                user_id=7,
+                resume_url="bob_resume.pdf",
+                status=JobApplicationStatus.submitted,
+            ),
+            Application(
+                job_id=7,
+                user_id=8,
+                resume_url="emma_resume.pdf",
+                status=JobApplicationStatus.reviewing,
+            ),
+            # Job 8
+            Application(
+                job_id=8,
+                user_id=9,
+                resume_url="michael_resume.pdf",
+                status=JobApplicationStatus.shortlisted,
+            ),
+            Application(
+                job_id=8,
+                user_id=10,
+                resume_url="sophia_resume.pdf",
+                status=JobApplicationStatus.submitted,
+            ),
+            # Job 9
+            Application(
+                job_id=9,
+                user_id=11,
                 resume_url="liam_resume.pdf",
                 status=JobApplicationStatus.reviewing,
             ),
             Application(
-                job_id=26,
+                job_id=9,
                 user_id=12,
-                resume_url="michael_resume.pdf",
-                status=JobApplicationStatus.shortlisted,
-            ),
-            # PostgreSQL Engineer
-            Application(
-                job_id=27,
-                user_id=16,
-                resume_url="noah_resume.pdf",
-                status=JobApplicationStatus.reviewing,
-            ),
-            Application(
-                job_id=27,
-                user_id=13,
-                resume_url="sophia_resume.pdf",
-                status=JobApplicationStatus.submitted,
-            ),
-            # DevOps Engineer
-            Application(
-                job_id=28,
-                user_id=13,
-                resume_url="sophia_resume.pdf",
-                status=JobApplicationStatus.shortlisted,
-            ),
-            Application(
-                job_id=28,
-                user_id=17,
-                resume_url="ava_resume.pdf",
-                status=JobApplicationStatus.submitted,
-            ),
-            # AI Engineer
-            Application(
-                job_id=29,
-                user_id=17,
-                resume_url="ava_resume.pdf",
-                status=JobApplicationStatus.reviewing,
-            ),
-            Application(
-                job_id=29,
-                user_id=11,
-                resume_url="emma_resume.pdf",
-                status=JobApplicationStatus.submitted,
-            ),
-            Application(
-                job_id=29,
-                user_id=9,
-                resume_url="alice_resume.pdf",
-                status=JobApplicationStatus.shortlisted,
-            ),
-            # Machine Learning Engineer
-            Application(
-                job_id=30,
-                user_id=11,
-                resume_url="emma_resume.pdf",
-                status=JobApplicationStatus.reviewing,
-            ),
-            Application(
-                job_id=30,
-                user_id=10,
-                resume_url="bob_resume.pdf",
-                status=JobApplicationStatus.submitted,
-            ),
-            # Data Engineer
-            Application(
-                job_id=31,
-                user_id=16,
-                resume_url="noah_resume.pdf",
-                status=JobApplicationStatus.shortlisted,
-            ),
-            Application(
-                job_id=31,
-                user_id=8,
-                resume_url="john_resume.pdf",
-                status=JobApplicationStatus.reviewing,
-            ),
-            # Automation Engineer
-            Application(
-                job_id=32,
-                user_id=15,
                 resume_url="olivia_resume.pdf",
+                status=JobApplicationStatus.shortlisted,
+            ),
+            # Job 10
+            Application(
+                job_id=10,
+                user_id=13,
+                resume_url="noah_resume.pdf",
                 status=JobApplicationStatus.submitted,
             ),
             Application(
-                job_id=32,
-                user_id=12,
-                resume_url="michael_resume.pdf",
-                status=JobApplicationStatus.rejected,
-            ),
-            # Cloud Engineer
-            Application(
-                job_id=33,
-                user_id=17,
+                job_id=10,
+                user_id=14,
                 resume_url="ava_resume.pdf",
                 status=JobApplicationStatus.reviewing,
             ),
+            # Job 11
             Application(
-                job_id=33,
-                user_id=13,
-                resume_url="sophia_resume.pdf",
+                job_id=11,
+                user_id=5,
+                resume_url="john_resume.pdf",
                 status=JobApplicationStatus.shortlisted,
             ),
-            # Site Reliability Engineer
             Application(
-                job_id=34,
-                user_id=13,
-                resume_url="sophia_resume.pdf",
+                job_id=11,
+                user_id=6,
+                resume_url="alice_resume.pdf",
                 status=JobApplicationStatus.hired,
             ),
+            # Job 12
             Application(
-                job_id=34,
-                user_id=12,
-                resume_url="michael_resume.pdf",
-                status=JobApplicationStatus.reviewing,
-            ),
-            # Linux System Engineer
-            Application(
-                job_id=35,
-                user_id=13,
-                resume_url="sophia_resume.pdf",
-                status=JobApplicationStatus.shortlisted,
-            ),
-            Application(
-                job_id=35,
-                user_id=16,
-                resume_url="noah_resume.pdf",
-                status=JobApplicationStatus.submitted,
-            ),
-            # Backend Developer
-            Application(
-                job_id=36,
-                user_id=14,
-                resume_url="liam_resume.pdf",
+                job_id=12,
+                user_id=7,
+                resume_url="bob_resume.pdf",
                 status=JobApplicationStatus.reviewing,
             ),
             Application(
-                job_id=36,
-                user_id=15,
-                resume_url="olivia_resume.pdf",
-                status=JobApplicationStatus.shortlisted,
-            ),
-            Application(
-                job_id=36,
+                job_id=12,
                 user_id=8,
-                resume_url="john_resume.pdf",
+                resume_url="emma_resume.pdf",
                 status=JobApplicationStatus.rejected,
             ),
         ]
@@ -456,7 +431,7 @@ def seed_applications():
 
 
 if __name__ == "__main__":
-    # seed_users()
-    # seed_companies()
-    # seed_jobs()
+    seed_users()
+    seed_companies()
+    seed_jobs()
     seed_applications()
