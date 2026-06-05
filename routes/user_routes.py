@@ -70,3 +70,5 @@ async def password_update(
     current_user.password_hash = hash_password(password_info.new_password)
     sess.commit()
     sess.refresh(current_user)
+
+
