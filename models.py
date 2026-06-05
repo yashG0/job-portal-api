@@ -29,6 +29,12 @@ class JobType(str, Enum):
     freelance = "Freelance"
 
 
+class JobSortSchema(str, Enum):
+    newest = "Newest"
+    salary_desc = "Salary desc"
+    salary_asc = "Salary asc"
+
+
 class WorkEnvironment(str, Enum):
     on_site = "On Site"
     remote = "Remote"
@@ -52,7 +58,7 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[UserRole] = mapped_column(default=UserRole.candidate)
     bio: Mapped[str | None]
-    
+
     created_at: Mapped[datetime] = mapped_column(default=datetime.now)
     updated_at: Mapped[datetime] = mapped_column(
         default=datetime.now, onupdate=datetime.now

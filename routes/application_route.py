@@ -3,7 +3,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from db import get_db
-from models import Application, Company, Job, JobApplicationStatus, User, UserRole
+from models import Application, Job, JobApplicationStatus, User, UserRole
 from routes.auth_routes import get_current_user
 from schema import ApplicationSchemaIn, ApplicationSchemaOut
 
